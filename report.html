@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Making Mulberry Bush (1976 → 2026) • Technical & Artistic Report</title>
+  <style>
+    :root {
+      --bg-page: #141016;
+      --bg-surface: #1e1822;
+      --bg-elevated: #28202e;
+      --bg-code: #110d14;
+      --paper-cream: #f6efe2;
+      --text-body: #e8dfd1;
+      --text-muted: #b8a9be;
+      --mulberry: #c25978;
+      --violet: #8465c4;
+      --gold: #e8a838;
+      --teal: #4ecdc4;
+      --crimson: #d64038;
+      --green: #78b842;
+      --border: rgba(246, 239, 226, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(194, 89, 120, 0.14), transparent 45%),
+        radial-gradient(circle at 88% 92%, rgba(132, 101, 196, 0.14), transparent 45%);
+      color: var(--text-body);
+      font-family: "Georgia", "Cambria", "Times New Roman", serif;
+      line-height: 1.68;
+      padding-bottom: 80px;
+    }
+
+    /* Top Sticky Navigation Bar */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 28px;
+      background: rgba(20, 16, 22, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid var(--border);
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: var(--paper-cream);
+      letter-spacing: 0.08em;
+    }
+
+    .nav-badge {
+      background: var(--mulberry);
+      color: #fff;
+      padding: 4px 9px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1.5px solid var(--border);
+      color: var(--paper-cream);
+      background: var(--bg-elevated);
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .nav-btn.primary {
+      background: var(--mulberry);
+      border-color: #ffdae3;
+      color: #fff;
+    }
+
+    .nav-btn.radical {
+      background: linear-gradient(135deg, #b83b6e, #6b38c9);
+      border-color: #e0c9ff;
+      color: #fff;
+    }
+
+    /* Main Container */
+    .report-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 36px 24px 0;
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      background: linear-gradient(145deg, #271b29, #1b1626);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 38px 40px;
+      margin-bottom: 36px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-family: "Courier New", Courier, monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.82rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 2.55rem;
+      line-height: 1.18;
+      color: var(--paper-cream);
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      color: #dfd3c3;
+      max-width: 920px;
+      margin-bottom: 24px;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.8rem;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: var(--gold);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Table of Contents */
+    .toc-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+      padding: 14px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.8rem;
+    }
+
+    .toc-bar a {
+      color: var(--teal);
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(78, 205, 196, 0.08);
+    }
+
+    .toc-bar a:hover {
+      background: rgba(78, 205, 196, 0.22);
+    }
+
+    /* Section Headings */
+    section {
+      margin-bottom: 52px;
+    }
+
+    .section-tag {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--mulberry);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-size: 1.85rem;
+      color: var(--paper-cream);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    h3 {
+      font-size: 1.28rem;
+      color: var(--gold);
+      margin: 24px 0 10px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      font-size: 1.03rem;
+    }
+
+    ul, ol {
+      margin: 0 0 18px 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    code {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.9em;
+      background: var(--bg-code);
+      color: var(--teal);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    pre {
+      background: var(--bg-code);
+      color: #e6decf;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      padding: 16px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin: 14px 0 20px;
+    }
+
+    /* Cards & Grids */
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+      margin: 18px 0;
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+      margin: 18px 0;
+    }
+
+    .info-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-card h4 {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.96rem;
+      color: var(--paper-cream);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .info-card p {
+      font-size: 0.94rem;
+      margin-bottom: 0;
+      color: #d6c8b8;
+    }
+
+    .frame-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .frame-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .frame-caption {
+      padding: 12px 14px;
+      font-size: 0.86rem;
+    }
+
+    .frame-caption strong {
+      display: block;
+      color: var(--gold);
+      font-family: "Courier New", Courier, monospace;
+      margin-bottom: 4px;
+    }
+
+    /* Contact Sheet Gallery */
+    .contact-sheets-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .contact-sheet-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--paper-cream);
+      transition: transform 0.15s ease;
+    }
+
+    .contact-sheet-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+    }
+
+    .contact-sheet-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .contact-sheet-item span {
+      display: block;
+      padding: 7px 10px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.74rem;
+      text-align: center;
+    }
+
+    /* Pipeline Step Timeline */
+    .pipeline-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .step-box {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border);
+      border-left: 5px solid var(--teal);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    @media (max-width: 720px) {
+      .step-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step-badge {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.78rem;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .step-tool-pill {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 3px 8px;
+      background: var(--bg-code);
+      color: var(--gold);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.72rem;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 26px;
+      font-size: 0.88rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 10px 13px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      background: var(--bg-elevated);
+      color: var(--gold);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .data-table tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Audio Comparison Deck */
+    .audio-deck {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .audio-card {
+      background: var(--bg-elevated);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .audio-card h4 {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.86rem;
+      color: var(--paper-cream);
+      margin-bottom: 6px;
+    }
+
+    .audio-card p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .audio-card audio {
+      width: 100%;
+      height: 36px;
+    }
+
+    /* Optical SVG Diagram Container */
+    .diagram-box {
+      background: var(--bg-code);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .diagram-box svg {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <span class="nav-badge">DOCUMENTARY REPORT</span>
+      <span>MULBERRY BUSH (1976 → 2026) • MAKING OF &amp; AI THOUGHT PROCESS</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-btn primary" href="index.html">🎨 Open 1976 Hand-Made Web App</a>
+      <a class="nav-btn radical" href="radical.html">✨ Open Radical 3-Act Edition</a>
+    </div>
+  </nav>
+
+  <main class="report-container">
+    <!-- Hero Banner -->
+    <header class="hero-card">
+      <div class="hero-eyebrow">50th Anniversary Forensic Reconstruction &amp; Expanded-Cinema Re-Imagining</div>
+      <h1 class="hero-title">Around the Mulberry Bush (1976 → 2026):<br/>How the Original Film &amp; Two New Web Films Were Made</h1>
+      <p class="hero-lead">
+        A comprehensive chronicle of how Ken Kahn’s 1976 three-act backlit shadow-screen performance and hand-made 16mm animation were decoded frame-by-frame—and how that analysis drove both a <strong>Faithful 1976 Hand-Made Cel Web App</strong> and a <strong>Radical 3-Act Expanded-Cinema Reinterpretation</strong>, complete with frame-synched soundtracks, projective shadow physics, and behind-the-scenes AI reasoning and tool usage.
+      </p>
+      <div class="meta-strip">
+        <div class="meta-item">
+          <strong>Original 1976 Film &amp; Staging</strong>
+          Ken Kahn (© 1976 Ken Kahn)
+        </div>
+        <div class="meta-item">
+          <strong>Original 1976 Dancers</strong>
+          Ken Kahn, Fannie Newman, Cathy Shaw, Dave Taenzer
+        </div>
+        <div class="meta-item">
+          <strong>Original 1976 Musicians</strong>
+          Nancy Koch &amp; Tommy Magee (Banjo &amp; Accordion, 120 BPM in G)
+        </div>
+        <div class="meta-item">
+          <strong>Source Media Specs</strong>
+          1080×1080 H.264 • 30 fps • 5,240 frames (00:02:54.67)
+        </div>
+      </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="toc-bar">
+      <strong style="color:var(--gold); padding:4px 6px;">Jump to Section:</strong>
+      <a href="#sec-1">1. The 1976 Live Performance &amp; Film</a>
+      <a href="#sec-2">2. Six Hand-Made Cel Representations</a>
+      <a href="#sec-3">3. AI Thought Process &amp; Tool Usage</a>
+      <a href="#sec-4">4. Making Film I: Faithful Hand-Made Web App</a>
+      <a href="#sec-5">5. Making Film II: Radical 3-Act Reinterpretation</a>
+      <a href="#sec-6">6. Composing the Synched Soundtracks</a>
+    </nav>
+
+    <!-- =================================================================== -->
+    <!-- SECTION 1: HOW THE ORIGINAL 1976 PERFORMANCE & FILM WERE MADE       -->
+    <!-- =================================================================== -->
+    <section id="sec-1">
+      <span class="section-tag">Part I • Origins in Physical Space &amp; Light (1976)</span>
+      <h2>1. How the Original 1976 Performance &amp; Film Were Made</h2>
+      <p>
+        Fifty years ago in 1976, <em>Mulberry Bush</em> was conceived not merely as a reel of celluloid, but as a <strong>three-act live expanded-cinema event</strong>:
+      </p>
+      <ol>
+        <li><strong>Act I (Live Shadow-Screen Circle):</strong> The four collaborators—<strong>Ken Kahn, Fannie Newman, Cathy Shaw, and Dave Taenzer</strong>—danced in a physical circle around a suspended, backlit translucent screen.</li>
+        <li><strong>Act II (The Projected 16mm Animation):</strong> The live dancers gave way to the projected hand-made film on the screen, where their circular dance underwent a sequence of visual abstractions.</li>
+        <li><strong>Act III (The Live Return):</strong> As the projected film wound backward from abstract dots to silhouettes to full color, the four live dancers returned to dance around the backlit screen once again.</li>
+      </ol>
+
+      <h3>The Optical Key: Why Giant Silhouettes Sweep Across the Foreground</h3>
+      <p>
+        Understanding that the original performance involved four people dancing <em>around a backlit screen</em> unlocks the central visual mystery of the 1976 film. When four dancers hold hands in a circle that loops in front of and behind a backlit screen (or in front of a rear spotlight):
+      </p>
+      <ul>
+        <li>When dancers are near the screen plane, their projected profile is roughly <strong>life-sized</strong>, moving left-to-right across the screen.</li>
+        <li>As the circle carries a dancer backward <strong>toward the rear spotlight</strong>, the law of similar triangles (<code>magnification = Z_lamp / (Z_lamp - Z_dancer)</code>) causes their shadow on the screen to <strong>magnify 2× to 3× into a towering giant</strong> sweeping rapidly in the <strong>opposite horizontal direction</strong>!</li>
+      </ul>
+
+      <!-- SVG Diagram of the 1976 Backlit Screen Optics -->
+      <div class="diagram-box">
+        <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="820" height="300" fill="#110d14" rx="8"/>
+          <!-- Light rays from Rear Lamp -->
+          <polygon points="90,150 470,30 470,270" fill="rgba(232, 168, 56, 0.10)" />
+          <line x1="90" y1="150" x2="470" y2="35" stroke="#e8a838" stroke-dasharray="5,5" stroke-width="1.5"/>
+          <line x1="90" y1="150" x2="470" y2="265" stroke="#e8a838" stroke-dasharray="5,5" stroke-width="1.5"/>
+          <!-- Dance Orbit Ellipse -->
+          <ellipse cx="470" cy="150" rx="220" ry="95" fill="none" stroke="#c25978" stroke-width="2" stroke-dasharray="7,5"/>
+          <!-- Backlit Screen at X = 470 -->
+          <line x1="470" y1="25" x2="470" y2="275" stroke="#f6efe2" stroke-width="5"/>
+          <text x="470" y="18" fill="#f6efe2" font-family="Courier New" font-size="12" text-anchor="middle" font-weight="bold">TRANSLUCENT BACKLIT SCREEN (Z = 0)</text>
+          <!-- Rear Halogen Lamp -->
+          <circle cx="90" cy="150" r="14" fill="#ffdf78" stroke="#e8a838" stroke-width="3"/>
+          <text x="90" y="184" fill="#ffdf78" font-family="Courier New" font-size="11" text-anchor="middle">REAR LAMP</text>
+          <!-- Dancer Near Lamp (casts 3x Giant Shadow!) -->
+          <circle cx="250" cy="150" r="11" fill="#d64038"/>
+          <text x="250" y="130" fill="#ff9e99" font-family="Courier New" font-size="11" text-anchor="middle">Dancer Near Lamp</text>
+          <text x="250" y="176" fill="#ff9e99" font-family="Courier New" font-size="10" text-anchor="middle">(Casts 3x Giant Shadow ↓)</text>
+          <!-- Dancer Near Back of Screen (casts 1x Crisp Shadow) -->
+          <circle cx="430" cy="62" r="10" fill="#4ecdc4"/>
+          <text x="385" y="48" fill="#4ecdc4" font-family="Courier New" font-size="11" text-anchor="middle">Dancer Near Screen (1.1x Shadow →)</text>
+          <!-- Dancer in Front of Screen (Lit in 3D!) -->
+          <circle cx="690" cy="150" r="11" fill="#78b842"/>
+          <text x="690" y="128" fill="#a8e678" font-family="Courier New" font-size="11" text-anchor="middle">Dancer in Front of Screen</text>
+          <text x="690" y="175" fill="#a8e678" font-family="Courier New" font-size="10" text-anchor="middle">(Full-Color 3D Figure ↑)</text>
+          <!-- Audience -->
+          <text x="775" y="154" fill="#b8a9be" font-family="Courier New" font-size="12" text-anchor="middle">👁️ AUDIENCE</text>
+        </svg>
+        <div style="font-family:Courier New, monospace; font-size:0.78rem; color:var(--text-muted); margin-top:8px;">
+          Figure 1: Top-down optical geometry of the 1976 performance. Passing close to the rear spotlight magnifies the dancer's shadow 3× on the screen while reversing apparent horizontal direction relative to the far-side arc.
+        </div>
+      </div>
+
+      <h3>The 5 Extracted Contact Sheets (Every Second from <code>00:00</code> to <code>02:54</code>)</h3>
+      <p>
+        To inspect the entire 1976 film without missing a single cut, I wrote a Python script using <code>imageio-ffmpeg</code> and <code>Pillow</code> to extract 175 frames (1 frame per second) and assemble five timestamped 6×6 contact sheets:
+      </p>
+      <div class="contact-sheets-row">
+        <a class="contact-sheet-item" href="assets/report/contact_sheet_1.jpg" target="_blank">
+          <img src="assets/report/contact_sheet_1.jpg" alt="Contact Sheet 1 (0:00 - 0:35)" />
+          <span>Sheet 1: 00:00 – 00:35</span>
+        </a>
+        <a class="contact-sheet-item" href="assets/report/contact_sheet_2.jpg" target="_blank">
+          <img src="assets/report/contact_sheet_2.jpg" alt="Contact Sheet 2 (0:36 - 1:11)" />
+          <span>Sheet 2: 00:36 – 01:11</span>
+        </a>
+        <a class="contact-sheet-item" href="assets/report/contact_sheet_3.jpg" target="_blank">
+          <img src="assets/report/contact_sheet_3.jpg" alt="Contact Sheet 3 (1:12 - 1:47)" />
+          <span>Sheet 3: 01:12 – 01:47</span>
+        </a>
+        <a class="contact-sheet-item" href="assets/report/contact_sheet_4.jpg" target="_blank">
+          <img src="assets/report/contact_sheet_4.jpg" alt="Contact Sheet 4 (1:48 - 2:23)" />
+          <span>Sheet 4: 01:48 – 02:23</span>
+        </a>
+        <a class="contact-sheet-item" href="assets/report/contact_sheet_5.jpg" target="_blank">
+          <img src="assets/report/contact_sheet_5.jpg" alt="Contact Sheet 5 (2:24 - 2:54)" />
+          <span>Sheet 5: 02:24 – 02:54</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SECTION 2: THE SIX HAND-MADE CEL REPRESENTATIONS                    -->
+    <!-- =================================================================== -->
+    <section id="sec-2">
+      <span class="section-tag">Part II • Forensic Analysis of the 1976 Artwork</span>
+      <h2>2. Decoding the Six Hand-Made 1976 Visual Representations</h2>
+      <p>
+        Close inspection of high-resolution frames revealed that the 1976 film was constructed by rotoscoping a core live-action loop of the four friends skipping in a circle, and then rendering those poses onto <strong>transparent animation cels</strong> across six distinct hand-made mediums. Because they shared the same underlying rotoscoped cycle on transparent cels, you could film a single medium alone, <strong>stack two mediums on top of each other</strong> (such as pointillist dots over contour hatching lines at <code>01:35</code>), or <strong>offset two cels of the same dancer by 1–2 frames</strong> to create multi-exposure onion-skin ghosting!
+      </p>
+
+      <div class="card-grid-3">
+        <div class="frame-card">
+          <img src="assets/report/t_006.2.jpg" alt="Frame at 0:06.2 - Colored Marker Rotoscope" />
+          <div class="frame-caption">
+            <strong>1. Felt-Tip Marker &amp; Ink Rotoscope (0:06.2)</strong>
+            Hand-inked black outlines filled with felt-tip markers on dusty-rose mulberry paper: Ken in burgundy shirt &amp; tan pants, Fannie in dark vest &amp; lavender sleeves.
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_010.2.jpg" alt="Frame at 0:10.2 - Silhouettes with Ghost Trails" />
+          <div class="frame-caption">
+            <strong>2. Cut-Out Silhouettes &amp; 3× Cel Echoes (0:10.2)</strong>
+            Crisp solid black silhouettes holding hands in a ring, with delayed translucent cel overlays creating an optical motion trail.
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_025.0.jpg" alt="Frame at 0:25.0 - Giant Crimson Foreground Sweep" />
+          <div class="frame-caption">
+            <strong>3. Giant Crimson Foreground Close-Up (0:25.0)</strong>
+            A near-side dancer sweeps across the foreground lens in deep crimson marker while smaller black silhouettes skip on the far side of the circle.
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_074.0.jpg" alt="Frame at 1:14.0 - Parallel Contour Hatching" />
+          <div class="frame-caption">
+            <strong>4. Parallel Contour Hatching Stripes (1:14.0)</strong>
+            Outlines vanish! Men are drawn with horizontal brown/red/black marker dashes and curly hair/beard loops; women have vertical bodice lines, radiating skirt pleats &amp; zigzag arms.
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_095.0.jpg" alt="Frame at 1:35.0 - Pointillist Dots over Hatching" />
+          <div class="frame-caption">
+            <strong>5. Hole-Punch Pointillist Ink Dots (1:35.0)</strong>
+            Small dark circular dots arranged along each dancer's anatomy—seen here stacked on a transparent cel directly over the contour-hatched figures!
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_089.5.jpg" alt="Frame at 1:29.5 - Giant Avery Color-Coding Stickers" />
+          <div class="frame-caption">
+            <strong>6. Giant Avery Color-Coding Stickers (1:29.5)</strong>
+            Large round self-adhesive paper coding labels—Red for head/torso/arms, Black or Navy Blue for skirts/pants, and Green or Yellow for lower legs!
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_113.5.jpg" alt="Frame at 1:53.5 - The Dot Pile Collapse" />
+          <div class="frame-caption">
+            <strong>7. The 01:53 Dot Pile Collapse! (1:53.5)</strong>
+            The visual punchline at the climax of the pointillist section: all the black dots lose their human shape and tumble into an unstructured heap in the bottom-right corner!
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_131.0.jpg" alt="Frame at 2:11.0 - Polyphonic Cel Collage" />
+          <div class="frame-caption">
+            <strong>8. Polyphonic Cel Stacking (2:11.0)</strong>
+            During the grand collage (<code>1:56–2:19</code>), the small black dot cel is superimposed directly over the charcoal-shaded silhouette cels.
+          </div>
+        </div>
+
+        <div class="frame-card">
+          <img src="assets/report/t_159.0.jpg" alt="Frame at 2:39.0 - Hand-Lettered Violet Credits" />
+          <div class="frame-caption">
+            <strong>9. Hand-Lettered Violet Credits (2:39.0)</strong>
+            After the reverse-arch finale (Dots → Silhouettes → Colored Marker at <code>2:22–2:30</code>), the background paper switches to cool violet for the four hand-lettered credit cards.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SECTION 3: AI THOUGHT PROCESS & TOOL USAGE                          -->
+    <!-- =================================================================== -->
+    <section id="sec-3">
+      <span class="section-tag">Part III • Methodology, Reasoning &amp; Tool Orchestration</span>
+      <h2>3. My Thought Process &amp; Tool Usage Pipeline</h2>
+      <p>
+        Rather than treating the request as a generic video wrapper or guessing at what the film looked like, I approached the task as a <strong>forensic digital restoration and creative re-engineering problem</strong>. Below is the exact sequence of hypotheses, tools, scripts, and discoveries that shaped both web applications:
+      </p>
+
+      <div class="pipeline-steps">
+        <div class="step-box">
+          <div>
+            <div class="step-badge">STEP 1 • DISCOVERY</div>
+            <span class="step-tool-pill">run_command</span>
+            <span class="step-tool-pill">imageio-ffmpeg</span>
+          </div>
+          <div>
+            <strong>Locating the Film &amp; Overcoming Missing System Binaries</strong>
+            <p>
+              I started by listing the workspace with <code>Get-ChildItem -Force</code> and found <code>Mulberry Bush 1976 .mp4</code> (114.3 MB, with a space before <code>.mp4</code>). When I ran <code>ffprobe</code> via <code>run_command</code>, PowerShell reported that <code>ffprobe</code> was not installed on the system <code>PATH</code>. Instead of giving up on video processing, I checked <code>python -m pip list</code> and discovered that <code>imageio-ffmpeg 0.8.1</code>, <code>pillow</code>, <code>numpy</code>, and <code>scipy</code> were installed in <code>C:\Python311\python.exe</code>. Calling <code>imageio_ffmpeg.get_ffmpeg_exe()</code> gave me a full FFmpeg 9.0.2 binary!
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div>
+            <div class="step-badge">STEP 2 • MULTIMODAL</div>
+            <span class="step-tool-pill">write_file</span>
+            <span class="step-tool-pill">read_file (Image/Audio/Video)</span>
+          </div>
+          <div>
+            <strong>Watching &amp; Listening to the Entire 1976 Film</strong>
+            <p>
+              I wrote <code>analyze_film.py</code> to run <code>volumedetect</code> on the audio stream, extract 175 1-fps frames, and build 5 annotated contact sheets (<code>contact_sheet_1.jpg</code> – <code>contact_sheet_5.jpg</code>), plus a 12-fps <code>preview.mp4</code> and <code>audio.mp3</code>. Using <code>read_file</code> on the contact sheets, high-res detail sheets, <code>audio.mp3</code>, and <code>preview.mp4</code> allowed me to directly see every visual style and hear Nancy Koch &amp; Tommy Magee's acoustic banjo and accordion duet.
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div>
+            <div class="step-badge">STEP 3 • CV METRICS</div>
+            <span class="step-tool-pill">extract_timeline.py</span>
+            <span class="step-tool-pill">NumPy</span>
+          </div>
+          <div>
+            <strong>Sub-Second (4-FPS) Computer Vision Scene &amp; Motion Extraction</strong>
+            <p>
+              Why didn't the original 1976 audio feel "synched" to the film cuts? Because in 1976, the folk duet played continuously while the animation frequently paused on <strong>blank mulberry paper frames</strong> (12 distinct pauses between <code>0:07</code> and <code>2:21</code>), cut between 6 visual mediums, swept giant red silhouettes across the lens, and collapsed into a pile of dots at <code>1:53</code>. I wrote <code>extract_timeline.py</code> to analyze all 699 quarter-second frames (4 fps) inside the 16mm gate crop, computing <strong>foreground coverage (<code>cov</code>)</strong>, <strong>horizontal center-of-mass (<code>com_x</code>)</strong> for stereo panning, <strong>redness excess (<code>red</code>)</strong> for crimson close-ups, and <strong>spatial edge density (<code>edge_ratio</code>)</strong> to distinguish solid silhouettes from hatching and dots.
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div>
+            <div class="step-badge">STEP 4 • MEDIAN KEYING</div>
+            <span class="step-tool-pill">extract_assets.py</span>
+            <span class="step-tool-pill">Pillow / NumPy</span>
+          </div>
+          <div>
+            <strong>Temporal Median Background Subtraction &amp; Credit Cel Extraction</strong>
+            <p>
+              Because the 16mm camera was fixed on an animation stand over the same physical sheets of mulberry-rose and violet paper, taking the <strong>pixel-wise temporal median</strong> across 7 blank pink frames (<code>12.5s, 38.2s, 41.8s, 67.5s, 81.5s, 112.2s, 140.5s</code>) and 6 blank violet frames (<code>152.8s–168.4s</code>) completely removed even stray single-frame dust specks, yielding pristine 1976 paper textures (<code>paper_mulberry.jpg</code> and <code>paper_violet.jpg</code>). Subtracting <code>paper_violet.jpg</code> from the credit frames cleanly isolated your original 1976 hand-lettered ink into transparent RGBA PNG cels!
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div>
+            <div class="step-badge">STEP 5 • MIR &amp; SYNTH</div>
+            <span class="step-tool-pill">analyze_audio.py</span>
+            <span class="step-tool-pill">build_synched_soundtrack.py</span>
+          </div>
+          <div>
+            <strong>Musical Key/BPM Detection &amp; Physical-Modeling Synthesis</strong>
+            <p>
+              Using <code>scipy</code> FFT pitch-class profiling and onset autocorrelation on <code>audio.mp3</code>, I discovered that Nancy Koch &amp; Tommy Magee's recording was in <strong>G Major (Open-G banjo tuning: G, D, E, B, C)</strong> with a sharp autocorrelation peak at exactly <strong>120 BPM</strong> (2.0 seconds per bar = 6 eighth-note jig slots of 0.333s). By composing our new synched score in <strong>G Major at 120 BPM</strong>, it locks mathematically to the quarter-second frame cuts <em>and</em> harmonizes in real time with the 1976 recording in our <strong>Hybrid Duet Remix</strong>!
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div>
+            <div class="step-badge">STEP 6 • RADICAL 3D</div>
+            <span class="step-tool-pill">radical_stage.js</span>
+            <span class="step-tool-pill">radical_sound.js</span>
+          </div>
+          <div>
+            <strong>Re-Imagining the 1976 Three-Act Live Backlit-Screen Performance</strong>
+            <p>
+              When you shared that the original 1976 premiere featured the four of you dancing live around a backlit screen before and after the projected film, I realized the radical version should model the <strong>actual 3D theater space and projective light optics</strong>—uniting live 3D dancers, real-time raycast backlit shadows, and six generative projected worlds with a 3D spatial Web Audio score.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SECTION 4: HOW FILM I (FAITHFUL 1976 HAND-MADE WEB APP) WAS MADE    -->
+    <!-- =================================================================== -->
+    <section id="sec-4">
+      <span class="section-tag">Part IV • Engineering Film I (<a href="index.html" style="color:var(--mulberry);">index.html</a>)</span>
+      <h2>4. How the Faithful 1976 Hand-Made Web App Was Built</h2>
+      <p>
+        To maintain the unmistakable hand-made look of 1976 in a living web app (<a href="index.html" style="color:var(--teal);">index.html</a> + <a href="cel_renderer.js" style="color:var(--teal);">cel_renderer.js</a>), digital vector smoothness is the enemy. Every line, fill, dot, and sticker on the HTML5 Canvas is processed through four physical-media simulation layers:
+      </p>
+
+      <div class="card-grid-2">
+        <div class="info-card">
+          <h4>1. Deterministic 12-FPS "On-Twos" Hand Boil <span>cel_renderer.js</span></h4>
+          <p>
+            In 16mm cel animation shot "on twos" (12 drawings per second), even a stationary figure shimmers slightly because each cel is hand-traced. Our renderer quantizes boil time to <code>frame12 = Math.floor(t * 12)</code> and perturbs every polygon vertex and curve control point via a deterministic hash:
+          </p>
+          <pre>boil(val, seed, frame12, amp = 1.8) {
+  const h = Math.sin(seed * 127.1 + frame12 * 311.7) * 43758.5453;
+  return val + ((h - Math.floor(h)) - 0.5) * 2.0 * amp;
+}</pre>
+        </div>
+
+        <div class="info-card">
+          <h4>2. Extracted 1976 Paper &amp; Streaky Felt-Tip Markers <span>paper_mulberry.jpg</span></h4>
+          <p>
+            The canvas renders directly over the median-extracted 1976 <code>paper_mulberry.jpg</code> and <code>paper_violet.jpg</code> textures, clipped inside the rounded 16mm camera gate with ±1.1px gate weave. In <strong>Felt-Tip Marker mode</strong>, each garment polygon is clipped and over-stroked with parallel translucent marker passes so overlapping strokes darken naturally like 1976 Magic Markers on construction paper.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h4>3. Gender-Specific 1976 Contour Hatching Vocabulary <span>Style 4</span></h4>
+          <p>
+            Matching frames <code>0:47</code> and <code>1:14</code> of your film, the hatching renderer uses two distinct visual grammars: <strong>Ken and Dave</strong> are rendered purely from parallel horizontal marker dashes (alternating dark brown, black, and burgundy) with curly ink-scribble loops for hair and beards and vertical toe ticks; <strong>Fannie and Cathy</strong> are rendered with vertical bodice lines, 9 fanning radial skirt pleats, and zigzag wave arms.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h4>4. 220-Particle Gravity Physics for the 01:53 Dot Collapse <span>Style 5</span></h4>
+          <p>
+            In <strong>Pointillist Hole-Punch Dot mode</strong>, ~55 dots per dancer track barycentric anatomical targets on their bodies. At <code>t = 112.85s</code> (<code>01:52.85</code>)—or whenever you click <em>Collapse Dots into Corner Pile!</em>—all dots detach into a 2D physics simulation with gravity (<code>880 px/s²</code>), restitution, and mound stacking inside the bottom-right corner of the 16mm film gate, before springing back into dancing figures at <code>01:55.85</code>!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SECTION 5: HOW FILM II (RADICAL 3-ACT REINTERPRETATION) WAS MADE    -->
+    <!-- =================================================================== -->
+    <section id="sec-5">
+      <span class="section-tag">Part V • Engineering Film II (<a href="radical.html" style="color:var(--violet);">radical.html</a>)</span>
+      <h2>5. How the Radical 3-Act Expanded-Cinema Version Was Built</h2>
+      <p>
+        The second web app (<a href="radical.html" style="color:var(--teal);">radical.html</a> + <a href="radical_stage.js" style="color:var(--teal);">radical_stage.js</a> + <a href="radical_sound.js" style="color:var(--teal);">radical_sound.js</a>) reinterprets <em>Mulberry Bush</em> by bringing the <strong>entire 1976 theater room onto a 3D stage</strong> and evolving the six 1976 cel styles into six computational worlds across three acts:
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>1976 Original Element</th>
+            <th>Radical 3-Act Evolution (<a href="radical.html" style="color:var(--gold);">radical.html</a>)</th>
+            <th>Visual &amp; Mathematical Mechanism</th>
+            <th>Synchronized Spatial Audio Voice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Act I: Live Dancers Around Backlit Screen</strong></td>
+            <td><strong>3D Stage Orbit &amp; Real-Time Raycast Shadow Physics</strong></td>
+            <td>4 dancers orbit at <code>(165 sin θ, 175 cos θ)</code> around a translucent screen at <code>Z=0</code>; rays from the Rear Halogen Lamp at <code>Z=-340</code> project inverse-square shadows onto the screen.</td>
+            <td>3D-panned wooden stage footsteps, handclaps, acoustic banjo/concertina &amp; a Rear-Lamp Shadow Contrabass Drone that swells with shadow magnification.</td>
+          </tr>
+          <tr>
+            <td><strong>1. Cut-Out Silhouettes &amp; Ghosts</strong></td>
+            <td><strong>World 1: Tri-Color CMY Prism Shadow-Theater</strong></td>
+            <td>Three offset rear spotlights (Cyan, Magenta, Yellow) cast phase-shifted shadow triples that blend additively on the screen.</td>
+            <td>Steve Reich-style 3-voice interlocking Glass Marimba &amp; Overtone Bell phase canon in G Lydian.</td>
+          </tr>
+          <tr>
+            <td><strong>2. Parallel Contour Hatching Stripes</strong></td>
+            <td><strong>World 2: Rutt-Etra Vector Oscilloscope Scanlines</strong></td>
+            <td>44 glowing horizontal CRT scanlines displace vertically (<code>Δy = -env · 22 + sin(y)</code>) wherever they intersect a dancer's 3D silhouette.</td>
+            <td>Sweeping analog wave-table FM &amp; resonant bandpass filter arpeggios.</td>
+          </tr>
+          <tr>
+            <td><strong>3. The Implied Mulberry Bush</strong></td>
+            <td><strong>World 3: Botanical Mulberry Mycelium &amp; Fractal Canopy</strong></td>
+            <td>A recursive wind-swaying fractal Mulberry Tree grows at center stage while living twigs and glowing berries sprout along each dancer's bones.</td>
+            <td>Plucked pentatonic Koto/Harp &amp; breathy harmonic wooden flutes.</td>
+          </tr>
+          <tr>
+            <td><strong>4. Hole-Punch Dots &amp; 1:53 Corner Pile</strong></td>
+            <td><strong>World 4: Quantum Point-Cloud &amp; 1:42 Singularity Supernova</strong></td>
+            <td>320 bioluminescent firefly particles form the dancers, spiral into a central gravitational vortex at <code>1:41.5</code>, implode, and detonate outward in a supernova!</td>
+            <td>Shimmering granular bell cloud → downward vortex glissando → sub-bass implosion → 10-voice chordal supernova.</td>
+          </tr>
+          <tr>
+            <td><strong>5. Giant Avery Color Sticker Dots</strong></td>
+            <td><strong>World 5: Kinetic Pop-Art Bauhaus Sticker Agents</strong></td>
+            <td>Spring-coupled 3D shaded spheres (Red, Cobalt, Gold, Emerald) tethered to the dancers' joints bounce with harmonic oscillation.</td>
+            <td>1976 Buchla Low-Pass Gate polyrhythmic bongos &amp; pitch-popping synth agents.</td>
+          </tr>
+          <tr>
+            <td><strong>6. Multi-Cel Onion-Skin Trails &amp; Return</strong></td>
+            <td><strong>World 6 &amp; Act III: 50-Year Spacetime Ribbons &amp; Live Reunion</strong></td>
+            <td>14-frame chronophotographic Marey ribbons trail behind the dancers; in Act III, live stage dancers and projected spirits reunite simultaneously.</td>
+            <td>Soaring CS-80 polyphonic brass/string choir united in full counterpoint with Act I's live footsteps, claps &amp; folk instruments.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SECTION 6: COMPOSING & SYNCHRONIZING THE SOUNDTRACKS                -->
+    <!-- =================================================================== -->
+    <section id="sec-6">
+      <span class="section-tag">Part VI • Audio Engineering &amp; Musical Synchronization</span>
+      <h2>6. Listen &amp; Compare: The Three Synchronized Soundtracks</h2>
+      <p>
+        Using Python (<code>scipy.signal</code>, <code>numpy</code>, and <code>imageio-ffmpeg</code>) alongside the browser's <strong>Web Audio API</strong>, I created three distinct studio audio tracks for the 1976 film (all locked to <strong>120 BPM in G Major</strong>), plus the real-time spatial procedural score in the Radical 3-Act Edition. You can audition the three studio tracks directly below:
+      </p>
+
+      <div class="audio-deck">
+        <div class="audio-card">
+          <h4>1. 2026 Frame-Synched Score (<code>synched_soundtrack.mp3</code>)</h4>
+          <p>
+            Switches instrumentation on the exact frame of every visual cut: Banjo/Accordion (Marker), Marimba/Woodblock (Silhouettes), Bowed Cello Swell (Giant Red), Harpsichord/Pen-Scrape (Hatching), Celesta (Dots), 1976 Moog Pop (Avery Stickers), 190ms Tape Slapback (Ghost frames), Footsteps (Blank pauses), and the <code>01:53</code> Waterfall Glissando!
+          </p>
+          <audio controls src="assets/synched_soundtrack.mp3"></audio>
+        </div>
+
+        <div class="audio-card">
+          <h4>2. 1976 + 2026 Hybrid Duet Remix (<code>hybrid_soundtrack.mp3</code>)</h4>
+          <p>
+            Because our new synched score was composed in the exact key (G Major) and tempo (120 BPM) of Nancy Koch &amp; Tommy Magee's 1976 recording, this track blends both performances together—dynamically ducking the 1976 track during blank-paper pauses and the <code>01:53</code> dot collapse!
+          </p>
+          <audio controls src="assets/hybrid_soundtrack.mp3"></audio>
+        </div>
+
+        <div class="audio-card">
+          <h4>3. Original 1976 Recording (<code>original_1976_audio.mp3</code>)</h4>
+          <p>
+            The original 1976 clawhammer banjo and accordion/concertina duet recorded by <strong>Nancy Koch and Tommy Magee</strong>, extracted directly from <code>Mulberry Bush 1976 .mp4</code>.
+          </p>
+          <audio controls src="assets/original_1976_audio.mp3"></audio>
+        </div>
+      </div>
+
+      <h3>Complete 22-Scene Visual &amp; Musical Synchronization Map (1976 Film)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Timecode</th>
+            <th>Scene / Visual Representation in 1976 Film</th>
+            <th>Synchronized Musical Arrangement &amp; Foley Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>00:00.0 – 00:05.7</code></td>
+            <td>Dark 16mm Leader &amp; Dim Circle Emergence</td>
+            <td>18 Hz projector sprocket purr + warm tuning fifths as figures emerge</td>
+          </tr>
+          <tr>
+            <td><code>00:05.7 – 00:07.2</code></td>
+            <td>Scene 1: Colored Felt-Marker Rotoscope Ring</td>
+            <td>Full Plucked Clawhammer Banjo, Reed Accordion &amp; Tambourine burst in (panning left)</td>
+          </tr>
+          <tr>
+            <td><code>00:07.2 – 00:08.0</code></td>
+            <td>Blank Mulberry Paper Breath I</td>
+            <td>Melody ducks; pattering dance footsteps cross behind the screen</td>
+          </tr>
+          <tr>
+            <td><code>00:08.0 – 00:12.0</code></td>
+            <td>Scene 2: Solid Black Silhouettes + 3× Ghost Echoes (<code>0:10</code>)</td>
+            <td>Shadow-Puppet Wooden Marimba, Pizzicato Strings &amp; Woodblock + 190ms Tape Slapback Delay at <code>0:10</code></td>
+          </tr>
+          <tr>
+            <td><code>00:13.5 – 00:19.7</code></td>
+            <td>Scene 3: Colored Marker Rotoscope + Translucent Cel Trails</td>
+            <td>Banjo &amp; Accordion Ensemble with shimmering octave tape-delay trails</td>
+          </tr>
+          <tr>
+            <td><code>00:24.0 – 00:31.7</code></td>
+            <td>Scenes 5–6: Giant Foreground Crimson &amp; Charcoal Sweeps</td>
+            <td>Deep stereo-panned Bowed Cello &amp; Low Brass Swell tracking <code>com_x</code> across the lens</td>
+          </tr>
+          <tr>
+            <td><code>00:39.0 – 00:41.2</code></td>
+            <td>Scene 7: The Right-Edge Sideways Peek-a-Boo!</td>
+            <td>Quirky solo Moog/Pizzicato peek-a-boo motif panned hard right (<code>pan = +0.75</code>)</td>
+          </tr>
+          <tr>
+            <td><code>00:45.0 – 01:21.2</code></td>
+            <td>Scenes 9–12: Parallel Contour Hatching Stripes (Solo &amp; Ring)</td>
+            <td>Striated 1976 Harpsichord/Clavinet 6/8 arpeggios + rhythmic Pen-on-Paper Guiro scrapes</td>
+          </tr>
+          <tr>
+            <td><code>01:22.0 – 01:25.5</code></td>
+            <td>Scene 13: First Hole-Punch Pointillist Dots over Hatching</td>
+            <td>Sparkling high-register Celesta &amp; Kalimba droplets join the Clavinet</td>
+          </tr>
+          <tr>
+            <td><code>01:27.7 – 01:45.7</code></td>
+            <td>Scenes 14–15: Giant Avery Color-Coding Sticker Dots!</td>
+            <td>Fat 1976 Buchla/Moog Resonant Filter Funk + Pitched "Sticker-Pop" Percussion</td>
+          </tr>
+          <tr>
+            <td><code>01:45.7 – 01:51.7</code></td>
+            <td>Scene 16: Pure Pointillist Black Dot Dancers</td>
+            <td>Delicate Music-Box, Celesta &amp; Pizzicato droplets dancing rightward</td>
+          </tr>
+          <tr>
+            <td><code>01:52.8 – 01:55.8</code></td>
+            <td><strong>Scene 17: THE DOT PILE COLLAPSE! (Bottom-Right Corner)</strong></td>
+            <td><strong>Cascading 2-octave waterfall glissando of wooden xylophone marbles &amp; bells into the right speaker, 1s comic silence, then upward spring pickup!</strong></td>
+          </tr>
+          <tr>
+            <td><code>01:55.8 – 02:19.7</code></td>
+            <td>Scenes 18–19: Dots Reborn &amp; The Grand Polyphonic Collage</td>
+            <td>All 6 instrument families trade phrases &amp; layer in counterpoint matching rapid cel cuts</td>
+          </tr>
+          <tr>
+            <td><code>02:19.7 – 02:21.7</code></td>
+            <td>Pause 4: The Grand 2-Second Blank Mulberry Paper Caesura</td>
+            <td>Sudden dramatic hush on empty pink paper; projector purr &amp; bass heartbeat pickup</td>
+          </tr>
+          <tr>
+            <td><code>02:21.7 – 02:30.0</code></td>
+            <td>Scene 20: Reverse-Arch Finale (Dots → Silhouettes → Colored Marker)</td>
+            <td>Cumulative crescendo: Celesta (<code>2:22</code>) + Marimba (<code>2:23</code>) + Full Banjo/Accordion Ensemble &amp; Tape Echo (<code>2:27</code>)</td>
+          </tr>
+          <tr>
+            <td><code>02:32.2 – 02:49.0</code></td>
+            <td>Scene 21: Hand-Lettered Credits on Cool Violet Paper</td>
+            <td>Pen-lettering flourishes + nostalgic Celesta/Accordion/Banjo chord salutes at <code>2:34</code>, <code>2:38</code>, <code>2:42</code> &amp; <code>2:46</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>
