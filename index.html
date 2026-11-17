@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MULBERRY BUSH (1976 — 2026) • by Ken Kahn • Interactive Hand-Made Edition</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Archival Studio Header -->
+  <header class="studio-header">
+    <div class="brand-block">
+      <span class="year-badge">1976 → 2026 • 50 YEARS</span>
+      <div>
+        <div class="hand-title">MULBERRY BUSH</div>
+        <div class="hand-subtitle">by Ken Kahn (© 1976) • Hand-Made Rotoscope &amp; Cel Animation + Synched Soundtrack</div>
+      </div>
+    </div>
+
+    <!-- Visual Mode Selector -->
+    <div class="header-mode-group">
+      <span class="group-label">Visual Projector:</span>
+      <button class="pill-btn active" data-view-mode="canvas">Living Hand-Made Canvas</button>
+      <button class="pill-btn" data-view-mode="video_only">1976 Original Film</button>
+      <button class="pill-btn" data-view-mode="hybrid">Hybrid Lightbox</button>
+      <button class="pill-btn" data-view-mode="side_by_side">Side-by-Side (1976 vs 2026)</button>
+    </div>
+
+    <!-- Soundtrack Mode Selector -->
+    <div class="header-mode-group">
+      <span class="group-label">Soundtrack:</span>
+      <button class="pill-btn active" data-audio-mode="synched">2026 Synched Score</button>
+      <button class="pill-btn" data-audio-mode="hybrid">1976 + 2026 Duet Remix</button>
+      <button class="pill-btn" data-audio-mode="original">1976 Nancy Koch &amp; Tommy Magee</button>
+      <button class="pill-btn" id="btn-mute">🔊 Sound On</button>
+      <a href="radical.html" class="pill-btn" style="text-decoration:none; background:#a85c74; color:#fff6ea; border-color:#ffded8;">✨ Radical 3-Act Edition →</a>
+    </div>
+  </header>
+
+  <!-- Main Two-Column Animation Stand Workbench -->
+  <main class="workbench">
+    <!-- Left Column: 16mm Oxberry Animation Stand & Multi-Track Score Scrubber -->
+    <section class="stage-column">
+      <div class="oxberry-frame">
+        <!-- Top Brass Animation Stand Pegbar -->
+        <div class="pegbar-strip">
+          <span class="peg-pin"></span>
+          <span id="frame-readout">16mm Frame #0139</span>
+          <span>OXBERRY CEL PEGBAR • 12 FPS BOIL</span>
+          <span id="time-readout">00:05.8 / 02:54.6</span>
+          <span class="peg-pin"></span>
+        </div>
+
+        <!-- Viewport(s) -->
+        <div class="stage-dual-wrapper" id="stage-dual-wrapper">
+          <!-- Reference 1976 Film Box (Visible in Side-by-Side mode) -->
+          <div class="viewport-box" id="orig-video-box">
+            <video id="ref-video" src="assets/mulberry_bush_1976_synched.mp4" playsinline preload="auto" muted></video>
+            <span class="viewport-tag">1976 Original 16mm Film</span>
+          </div>
+
+          <!-- Living Hand-Made Cel Canvas Box -->
+          <div class="viewport-box" id="canvas-viewport-box">
+            <canvas id="stage-canvas" width="720" height="720"></canvas>
+            <span class="viewport-tag">Hand-Made Cel Stand (Click/Drag to Stamp on Ring)</span>
+            <span class="stamp-hint-tag">Interactive 16mm Gate</span>
+          </div>
+        </div>
+
+        <!-- Hybrid Lightbox Crossfader / Split-Screen Curtain Bar -->
+        <div class="hybrid-controls-bar hidden" id="hybrid-controls-bar">
+          <button class="pill-btn" id="btn-split-curtain">Mode: Lightbox Onion-Skin</button>
+          <label for="hybrid-mix-slider">1976 Film ↔ 2026 Canvas Balance:</label>
+          <input type="range" id="hybrid-mix-slider" min="0.05" max="0.95" step="0.01" value="0.52" />
+        </div>
+      </div>
+
+      <!-- Transport, Live Scene Readout, Visual Score Ribbon & 6-Voice Stem Meters -->
+      <div class="transport-card">
+        <div class="transport-row">
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="primary-play-btn" id="btn-play">
+              <span id="play-btn-label">▶ Run 16mm Projector</span>
+            </button>
+            <button class="pill-btn" id="btn-restart" title="Restart from 00:00">⏮ Restart (00:00)</button>
+          </div>
+
+          <div style="display:flex; gap:6px; align-items:center;">
+            <span class="group-label">Paper Stock:</span>
+            <button class="pill-btn active" data-paper-tint="auto">1976 Auto</button>
+            <button class="pill-btn" data-paper-tint="mulberry">Mulberry Rose</button>
+            <button class="pill-btn" data-paper-tint="violet">Credit Violet</button>
+            <button class="pill-btn" data-paper-tint="parchment">Warm Manila</button>
+          </div>
+        </div>
+
+        <div class="scene-banner">
+          <div id="scene-title">Scene 1 • Colored Felt-Marker Rotoscope Ring</div>
+          <div id="scene-desc">Ken, Fannie, Dave &amp; Cathy hold hands in marker &amp; ink • Clawhammer Banjo &amp; Reed Accordion</div>
+        </div>
+
+        <!-- Interactive 6-Track Visual & Musical Score Ribbon (Click/Drag to Scrub) -->
+        <canvas id="score-ribbon-canvas" width="760" height="58" title="Click or drag to scrub across the 22 scenes of Mulberry Bush (1976)"></canvas>
+
+        <!-- Real-Time 6-Voice Synched Musical Stem Meters -->
+        <div class="stem-meters-grid">
+          <div class="stem-item">
+            <span>1. Banjo &amp; Accordion (Marker)</span>
+            <div class="stem-track"><div class="stem-fill" id="stem-bar-colored" style="background:#d6453d;"></div></div>
+          </div>
+          <div class="stem-item">
+            <span>2. Shadow Marimba (Silhouette)</span>
+            <div class="stem-track"><div class="stem-fill" id="stem-bar-silhouette" style="background:#9c8aa5;"></div></div>
+          </div>
+          <div class="stem-item">
+            <span>3. Bowed Cello Swell (Giant Red)</span>
+            <div class="stem-track"><div class="stem-fill" id="stem-bar-giant_red" style="background:#b01c26;"></div></div>
+          </div>
+          <div class="stem-item">
+            <span>4. Clavinet &amp; Pen Guiro (Hatching)</span>
+            <div class="stem-track"><div class="stem-fill" id="stem-bar-hatching" style="background:#d99b38;"></div></div>
+          </div>
+          <div class="stem-item">
+            <span>5. Pointillist Celesta (Small Dots)</span>
+            <div class="stem-track"><div class="stem-fill" id="stem-bar-small_dots" style="background:#5bc0be;"></div></div>
+          </div>
+          <div class="stem-item">
+            <span>6. 1976 Moog Pop (Avery Stickers)</span>
+            <div class="stem-track"><div class="stem-fill" id="stem-bar-giant_dots" style="background:#76b041;"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: 1976 Cel Pegbar Stacker, Special Effects & Chapter Navigator -->
+    <aside class="controls-column">
+      <!-- Card 1: The 6 Hand-Made 1976 Cel Representations -->
+      <div class="control-card">
+        <div class="card-header">
+          <span class="card-title">1976 Hand-Made Cel Pegbar (Stackable Layers)</span>
+          <div style="display:flex; gap:6px;">
+            <button class="pill-btn active" data-choreo-mode="auto">Follow 1976 Film Score</button>
+            <button class="pill-btn" data-choreo-mode="manual">Manual Cel Mix</button>
+          </div>
+        </div>
+
+        <div class="cel-layers-grid">
+          <button class="cel-layer-btn active" data-cel-style="colored">
+            <span class="cel-layer-name">
+              <span class="cel-dot-swatch" style="background:#8a1c24; border:1.5px solid #f4ead8;"></span>
+              1. Felt-Marker &amp; Ink
+            </span>
+            <span class="cel-layer-voice">🎵 Clawhammer Banjo &amp; Accordion</span>
+          </button>
+
+          <button class="cel-layer-btn" data-cel-style="silhouette">
+            <span class="cel-layer-name">
+              <span class="cel-dot-swatch" style="background:#151116; border:1.5px solid #c2b0be;"></span>
+              2. Cut-Out Silhouettes
+            </span>
+            <span class="cel-layer-voice">🎵 Shadow Marimba &amp; Woodblock</span>
+          </button>
+
+          <button class="cel-layer-btn" data-cel-style="giant_red">
+            <span class="cel-layer-name">
+              <span class="cel-dot-swatch" style="background:#a31621; border:1.5px solid #ffb3ad;"></span>
+              3. Giant Crimson Sweep
+            </span>
+            <span class="cel-layer-voice">🎵 Stereo Bowed Cello &amp; Brass Swell</span>
+          </button>
+
+          <button class="cel-layer-btn" data-cel-style="hatching">
+            <span class="cel-layer-name">
+              <span class="cel-dot-swatch" style="background:#dfa03a; border:1.5px solid #fff;"></span>
+              4. Contour Hatching Stripes
+            </span>
+            <span class="cel-layer-voice">🎵 Harpsichord &amp; Pen-Scrape Guiro</span>
+          </button>
+
+          <button class="cel-layer-btn" data-cel-style="small_dots">
+            <span class="cel-layer-name">
+              <span class="cel-dot-swatch" style="background:#56b6b4; border:1.5px solid #fff;"></span>
+              5. Hole-Punch Ink Dots
+            </span>
+            <span class="cel-layer-voice">🎵 Pointillist Celesta &amp; Kalimba</span>
+          </button>
+
+          <button class="cel-layer-btn" data-cel-style="giant_dots">
+            <span class="cel-layer-name">
+              <span class="cel-dot-swatch" style="background:#72a43c; border:1.5px solid #fff;"></span>
+              6. Giant Avery Stickers
+            </span>
+            <span class="cel-layer-voice">🎵 1976 Buchla/Moog Filter Funk</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2: Signature 1976 Visual Gags & Interactive Triggers -->
+      <div class="control-card">
+        <div class="card-header">
+          <span class="card-title">Signature 1976 Visual Moments &amp; Stand Effects</span>
+        </div>
+
+        <div class="fx-grid">
+          <button class="fx-btn full-span" id="btn-trigger-collapse">
+            💥 Collapse Dots into Corner Pile! (1:53 Waterfall Glissando)
+          </button>
+          <button class="fx-btn" id="btn-trigger-giant">
+            💃 Sweep Giant Red Dancer Across Lens
+          </button>
+          <button class="fx-btn" id="btn-trigger-peek">
+            👀 0:39 Right-Edge Peek-a-Boo!
+          </button>
+          <button class="fx-btn" id="btn-toggle-ghost">
+            👻 3x Onion-Skin Ghost Trails + Tape Echo
+          </button>
+          <button class="fx-btn" id="btn-toggle-bush">
+            🌳 Reveal Hand-Made Mulberry Bush in Ring
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 3: Interactive Cel Stamp / Pen Tool -->
+      <div class="control-card">
+        <div class="card-header">
+          <span class="card-title">Draw &amp; Stamp on the Spinning Cel Ring</span>
+          <button class="pill-btn" id="btn-clear-stamps">Clear Added Marks</button>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+          <span class="group-label">Click/Drag on Gate:</span>
+          <button class="pill-btn active" data-stamp-tool="avery">🔴 Giant Avery Color Stickers</button>
+          <button class="pill-btn" data-stamp-tool="dots">⚫ Hole-Punch Ink Dots</button>
+          <button class="pill-btn" data-stamp-tool="hatching">〰️ Parallel Marker Hatching</button>
+        </div>
+      </div>
+
+      <!-- Card 4: Instant Scene Jump Chapters (1976 Film Structure) -->
+      <div class="control-card">
+        <div class="card-header">
+          <span class="card-title">Jump to Iconic 1976 Film Scenes</span>
+        </div>
+        <div class="chapters-grid">
+          <button class="chapter-chip" data-jump-time="5.75">0:06 Colored Marker Ring</button>
+          <button class="chapter-chip" data-jump-time="8.2">0:08 Silhouettes + Ghosts</button>
+          <button class="chapter-chip" data-jump-time="14.0">0:14 Double-Exposure Marker</button>
+          <button class="chapter-chip" data-jump-time="24.2">0:24 Giant Crimson Close-Up</button>
+          <button class="chapter-chip" data-jump-time="39.0">0:39 Right-Edge Peek-a-Boo</button>
+          <button class="chapter-chip" data-jump-time="45.0">0:45 First Contour Hatching</button>
+          <button class="chapter-chip" data-jump-time="69.5">1:10 Hatching Ring Dance</button>
+          <button class="chapter-chip" data-jump-time="82.0">1:22 First Pointillist Dots</button>
+          <button class="chapter-chip" data-jump-time="87.8">1:28 Giant Avery Sticker Dots!</button>
+          <button class="chapter-chip" data-jump-time="112.5">1:53 The Dot Pile Collapse!</button>
+          <button class="chapter-chip" data-jump-time="126.0">2:06 Grand Polyphonic Collage</button>
+          <button class="chapter-chip" data-jump-time="141.8">2:22 Reverse-Arch Finale</button>
+          <button class="chapter-chip" data-jump-time="153.5">2:34 Hand-Lettered Violet Credits</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="credits-footer">
+    <strong>MULBERRY BUSH</strong> • Original 16mm Film by <strong>Ken Kahn</strong> (© 1976 Ken Kahn) • Original 1976 Music by <strong>Nancy Koch &amp; Tommy Magee</strong> • Dancers &amp; Special Thanks: <strong>Fannie Newman, Cathy Shaw, Dave Taenzer</strong> • 2026 Interactive Hand-Made Web App &amp; Frame-Synched Soundtrack
+  </footer>
+
+  <script src="timeline_data.js"></script>
+  <script src="sound_engine.js"></script>
+  <script src="cel_renderer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

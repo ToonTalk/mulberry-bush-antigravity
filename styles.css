@@ -1,0 +1,527 @@
+/*
+ * MULBERRY BUSH (1976 -> 2026) — 50th Anniversary Interactive Edition
+ * Tactile 1976 Oxberry Animation Stand & 16mm Screening Room Styling
+ */
+
+:root {
+  --bg-darkroom: #151015;
+  --bg-panel: #211922;
+  --bg-card: #2b202c;
+  --paper-cream: #f4ead8;
+  --paper-mulberry: #a85c74;
+  --paper-violet: #6d559e;
+  --ink-black: #161116;
+  --accent-red: #c93b32;
+  --accent-ochre: #dfa03a;
+  --accent-green: #72a43c;
+  --accent-teal: #56b6b4;
+  --border-warm: rgba(244, 234, 216, 0.16);
+  --text-main: #f5ece0;
+  --text-muted: #c2b0be;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-darkroom);
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(168, 92, 116, 0.14), transparent 55%),
+    radial-gradient(circle at 82% 80%, rgba(109, 85, 158, 0.14), transparent 55%);
+  color: var(--text-main);
+  font-family: "Courier Prime", "Courier New", Courier, monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Top Archival Header */
+.studio-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 22px;
+  background: rgba(24, 18, 25, 0.94);
+  border-bottom: 2px solid var(--border-warm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.year-badge {
+  background: var(--paper-mulberry);
+  color: #fff6ea;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  border: 1.5px solid rgba(255, 240, 225, 0.4);
+  box-shadow: 2px 2px 0 #0d090d;
+}
+
+.hand-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--paper-cream);
+  text-shadow: 2px 2px 0 #0c080c;
+}
+
+.hand-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.header-mode-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.group-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--accent-ochre);
+  margin-right: 2px;
+}
+
+.pill-btn {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1.5px solid var(--border-warm);
+  padding: 6px 11px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.14s ease;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+.pill-btn:hover {
+  border-color: var(--paper-cream);
+  transform: translateY(-1px);
+}
+
+.pill-btn.active {
+  background: var(--paper-cream);
+  color: var(--ink-black);
+  border-color: var(--paper-cream);
+  box-shadow: 2px 2px 0 var(--accent-red);
+}
+
+/* Main Two-Column Workbench */
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(420px, 1.18fr) minmax(360px, 0.95fr);
+  gap: 18px;
+  padding: 16px 22px;
+  max-width: 1560px;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+}
+
+@media (max-width: 1080px) {
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Column: Animation Stand Viewport & Score Scrubber */
+.stage-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oxberry-frame {
+  background: #1c151d;
+  border: 2px solid var(--border-warm);
+  border-radius: 14px;
+  padding: 12px 16px 16px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Brass Animation Pegbar at top of Cel Stand */
+.pegbar-strip {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 14px;
+  background: linear-gradient(90deg, #32262e, #473640, #32262e);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 225, 180, 0.22);
+  font-size: 0.74rem;
+  color: #e6d2b5;
+}
+
+.peg-pin {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f5d38c, #996d26);
+  border: 1.5px solid #241914;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Viewport Container (Supports Single or Side-by-Side Dual Projectors) */
+.stage-dual-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.viewport-box {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1;
+  background: #070507;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 240, 220, 0.2);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.85);
+}
+
+.stage-dual-wrapper:not(.side-by-side) #orig-video-box {
+  display: none;
+}
+
+.stage-dual-wrapper.side-by-side .viewport-box {
+  max-width: 360px;
+}
+
+#stage-canvas,
+#ref-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  cursor: crosshair;
+}
+
+.viewport-tag {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  background: rgba(18, 12, 18, 0.82);
+  color: var(--paper-cream);
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-warm);
+  pointer-events: none;
+}
+
+.stamp-hint-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  background: rgba(18, 12, 18, 0.78);
+  color: var(--accent-ochre);
+  font-size: 0.68rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.hybrid-controls-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 8px 12px;
+  background: rgba(43, 32, 44, 0.85);
+  border-radius: 8px;
+  border: 1px solid var(--border-warm);
+  font-size: 0.78rem;
+}
+
+.hybrid-controls-bar.hidden {
+  display: none;
+}
+
+/* Transport & Scene Banner */
+.transport-card {
+  background: var(--bg-panel);
+  border: 1.5px solid var(--border-warm);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.transport-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.primary-play-btn {
+  background: var(--accent-red);
+  color: #fff8f0;
+  border: 2px solid #ffded8;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #0d080c;
+  transition: transform 0.1s ease;
+}
+
+.primary-play-btn.playing {
+  background: var(--accent-ochre);
+  color: #161015;
+  border-color: #fff3d1;
+}
+
+.primary-play-btn:hover {
+  transform: translateY(-1px);
+}
+
+.scene-banner {
+  background: rgba(20, 15, 21, 0.85);
+  border-left: 4px solid var(--paper-mulberry);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+#scene-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--paper-cream);
+}
+
+#scene-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+#score-ribbon-canvas {
+  width: 100%;
+  height: 58px;
+  border-radius: 6px;
+  border: 1px solid var(--border-warm);
+  cursor: pointer;
+  display: block;
+}
+
+/* 6-Voice Synched Stem Visualizer */
+.stem-meters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px 10px;
+  padding-top: 4px;
+}
+
+.stem-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.stem-track {
+  height: 6px;
+  background: #120d13;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stem-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.06s linear;
+}
+
+/* Right Column: Cel Pegbar & Creative Soundboard */
+.controls-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.control-card {
+  background: var(--bg-panel);
+  border: 1.5px solid var(--border-warm);
+  border-radius: 12px;
+  padding: 13px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--border-warm);
+  padding-bottom: 6px;
+}
+
+.card-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--paper-cream);
+}
+
+/* 6 Hand-Made Cel Layer Cards */
+.cel-layers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.cel-layer-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 9px 11px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-warm);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.14s ease;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+.cel-layer-btn:hover {
+  border-color: var(--paper-cream);
+}
+
+.cel-layer-btn.active {
+  background: linear-gradient(135deg, #3c2635, #2d1e2b);
+  border-color: var(--accent-ochre);
+  box-shadow: 2px 2px 0 var(--accent-ochre);
+}
+
+.cel-layer-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--paper-cream);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cel-layer-voice {
+  font-size: 0.69rem;
+  color: var(--accent-ochre);
+}
+
+.cel-dot-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Special Effects & Chapter Grid */
+.fx-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.fx-btn {
+  padding: 8px 10px;
+  background: #2f212d;
+  color: var(--paper-cream);
+  border: 1.5px solid var(--border-warm);
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.12s ease;
+}
+
+.fx-btn:hover {
+  border-color: var(--accent-ochre);
+  background: #3b2838;
+}
+
+.fx-btn.active {
+  background: var(--accent-red);
+  color: #fff;
+  border-color: #ffe2dc;
+}
+
+.fx-btn.full-span {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: #3d2028;
+  border-color: rgba(223, 160, 58, 0.45);
+}
+
+.chapters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chapter-chip {
+  background: #1a141b;
+  color: var(--text-muted);
+  border: 1px solid var(--border-warm);
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.71rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.chapter-chip:hover {
+  color: var(--paper-cream);
+  border-color: var(--paper-mulberry);
+  background: #2d1f28;
+}
+
+.credits-footer {
+  text-align: center;
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  padding: 8px 20px 14px;
+  border-top: 1px solid var(--border-warm);
+}

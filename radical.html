@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MULBERRY BUSH: RADICAL 3-ACT REINTERPRETATION (1976 — 2026) • Expanded Cinema</title>
+  <link rel="stylesheet" href="radical.css" />
+</head>
+<body>
+  <!-- Hidden archival video element for optional 3D screen projection -->
+  <video id="archival-1976-video" src="assets/mulberry_bush_1976_synched.mp4" playsinline preload="auto" muted loop style="display:none;"></video>
+
+  <!-- Header -->
+  <header class="radical-header">
+    <div class="title-cluster">
+      <span class="act-pill-badge">EXPANDED CINEMA • 3-ACT PERFORMANCE</span>
+      <div>
+        <div class="main-heading">MULBERRY BUSH : RADICAL REINTERPRETATION</div>
+        <div class="sub-heading">Act I: 4 Live Dancers Around Backlit Screen → Act II: Projected Metamorphosis → Act III: Live + Projected Reunion</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button class="r-btn" id="btn-mute-radical">🔊 Spatial Audio On</button>
+      <a class="switch-edition-link" href="index.html">← Switch to Faithful 1976 Hand-Made Edition</a>
+    </div>
+  </header>
+
+  <!-- Main Two-Column Expanded-Cinema Stage & Console -->
+  <main class="theater-grid">
+    <!-- Left Column: 3D Expanded-Cinema Stage & 3-Act Score Scrubber -->
+    <section class="stage-column">
+      <div class="stage-frame">
+        <canvas id="radical-stage-canvas" width="960" height="640"></canvas>
+        <div class="stage-overlay-top">
+          <span class="overlay-chip">Drag on Stage to Orbit 3D Camera • Rear Lamp + Translucent Screen + 4 Orbiting Dancers</span>
+          <span class="overlay-chip" id="radical-time-readout">00:00.0 / 03:00.0</span>
+        </div>
+      </div>
+
+      <!-- Transport, 3-Act Narrative Banner, Timeline Ribbon & Spatial Audio Meters -->
+      <div class="transport-console">
+        <div class="console-row">
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="play-btn-radical" id="btn-play-radical">
+              <span id="play-radical-label">▶ Start 3-Act Performance</span>
+            </button>
+            <button class="r-btn" id="btn-restart-radical">⏮ Restart Act I</button>
+          </div>
+
+          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <span style="font-size:0.72rem; color:#ffbe3b;">3D Camera:</span>
+            <button class="r-btn active" data-cam-preset="auto">🎬 Auto Cinematographer</button>
+            <button class="r-btn" data-cam-preset="front">🎭 Audience Front Row</button>
+            <button class="r-btn" data-cam-preset="iso">📐 Isometric Light-Cone</button>
+            <button class="r-btn" data-cam-preset="overhead">🦅 Overhead Ray-Trace</button>
+            <button class="r-btn" data-cam-preset="inside">💃 Inside the Ring POV</button>
+          </div>
+        </div>
+
+        <div class="narrative-banner">
+          <div id="radical-scene-title">ACT I.a • Live in the Room: Four Friends Around the Backlit Screen</div>
+          <div id="radical-scene-desc">Ken, Fannie, Dave &amp; Cathy orbit the translucent muslin screen in 3D space • Live Stage Footsteps, Claps &amp; Acoustic Jig</div>
+        </div>
+
+        <canvas id="radical-ribbon-canvas" width="820" height="46" title="Click or drag to scrub across Act I (Live), Act II (Projected Worlds), and Act III (Live + Projected Reunion)"></canvas>
+
+        <!-- 6-Channel Spatial Audio Telemetry -->
+        <div class="meters-row">
+          <div class="meter-box">
+            <span>1. Live Stage Footsteps &amp; Folk</span>
+            <div class="meter-bg"><div class="meter-bar" id="rad-meter-stage_live" style="background:#f5a623;"></div></div>
+          </div>
+          <div class="meter-box">
+            <span>2. Rear-Lamp Shadow Contrabass</span>
+            <div class="meter-bg"><div class="meter-bar" id="rad-meter-shadow_drone" style="background:#d44d7a;"></div></div>
+          </div>
+          <div class="meter-box">
+            <span>3. CMY Prism &amp; Botanical Canon</span>
+            <div class="meter-bg"><div class="meter-bar" id="rad-meter-prism_canon" style="background:#2be4ff;"></div></div>
+          </div>
+          <div class="meter-box">
+            <span>4. Scanline FM &amp; Buchla Agents</span>
+            <div class="meter-bg"><div class="meter-bar" id="rad-meter-scanline_synth" style="background:#ff4268;"></div></div>
+          </div>
+          <div class="meter-box">
+            <span>5. Quantum Point-Cloud Bells</span>
+            <div class="meter-bg"><div class="meter-bar" id="rad-meter-quantum_bells" style="background:#72f56c;"></div></div>
+          </div>
+          <div class="meter-box">
+            <span>6. Spacetime CS-80 Choir</span>
+            <div class="meter-bg"><div class="meter-bar" id="rad-meter-spacetime_pad" style="background:#9e6bff;"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: 3-Act Selector, 6 Radical Worlds & Optical Rig Controls -->
+    <aside class="director-column">
+      <!-- Card 1: The Three-Act Expanded-Cinema Structure -->
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>Three-Act Performance Structure (1976 Live Staging)</span>
+        </div>
+        <div class="acts-grid">
+          <button class="act-card-btn active" data-select-act="1">
+            <span class="act-num">ACT I (0:00–0:45)</span>
+            <span class="act-sub">4 Live Dancers Orbiting the Backlit Screen</span>
+          </button>
+          <button class="act-card-btn" data-select-act="2">
+            <span class="act-num">ACT II (0:45–2:15)</span>
+            <span class="act-sub">The Projected Film: 6 Radical Worlds</span>
+          </button>
+          <button class="act-card-btn" data-select-act="3">
+            <span class="act-num">ACT III (2:15–3:00)</span>
+            <span class="act-sub">Live Dancers Return + Projected Spirits Unite</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2: The 6 Radical Metamorphosis Worlds (Act II Portal) -->
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>Six Radical Worlds Around the Mulberry Bush</span>
+          <button class="r-btn active" id="btn-auto-score">Mode: Auto 3-Act Score</button>
+        </div>
+
+        <div class="worlds-grid">
+          <button class="world-btn" data-select-world="prism">
+            <span class="w-name">🌈 1. CMY Prism Shadows</span>
+            <span class="w-music">3 Spotlights • Reich Marimba Canon</span>
+          </button>
+          <button class="world-btn" data-select-world="scanlines">
+            <span class="w-name">〰️ 2. Rutt-Etra Scanlines</span>
+            <span class="w-music">Vector CRT Hatching • Wave-Table FM</span>
+          </button>
+          <button class="world-btn" data-select-world="botanical">
+            <span class="w-name">🌿 3. Mulberry Mycelium</span>
+            <span class="w-music">Living Fractal Canopy • Koto &amp; Flute</span>
+          </button>
+          <button class="world-btn" data-select-world="quantum">
+            <span class="w-name">✨ 4. Quantum Point-Cloud</span>
+            <span class="w-music">320 Firefly Dots • Granular Bell Swarm</span>
+          </button>
+          <button class="world-btn" data-select-world="bauhaus">
+            <span class="w-name">🔴 5. Bauhaus Sticker Agents</span>
+            <span class="w-music">Spring-Coupled Spheres • Buchla Bongos</span>
+          </button>
+          <button class="world-btn" data-select-world="spacetime">
+            <span class="w-name">⏳ 6. Spacetime Ribbons</span>
+            <span class="w-music">50-Year Motion Trails • CS-80 Choir</span>
+          </button>
+        </div>
+
+        <button class="singularity-btn" id="btn-singularity">
+          💥 Trigger Gravitational Singularity Collapse &amp; Big-Bang Supernova! (Evolution of 1:53 Dot Pile)
+        </button>
+      </div>
+
+      <!-- Card 3: Optical Backlit Screen & Rear Halogen Lamp Physics -->
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>Optical Stage Rig &amp; Projection Physics</span>
+        </div>
+
+        <div class="slider-row">
+          <label for="lamp-dist-slider">Rear Halogen Lamp Distance:</label>
+          <input type="range" id="lamp-dist-slider" min="210" max="480" step="5" value="340" />
+          <span id="lamp-dist-val">Max Shadow: 2.1x</span>
+        </div>
+
+        <div class="slider-row">
+          <label for="scrim-opacity-slider">Muslin Screen Opacity:</label>
+          <input type="range" id="scrim-opacity-slider" min="0.35" max="1.0" step="0.02" value="0.86" />
+        </div>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap; padding-top:4px;">
+          <button class="r-btn active" id="btn-toggle-rays">🔦 Show Raycast Shadow Lines</button>
+          <button class="r-btn" id="btn-project-1976">🎞️ Project 1976 Archival Film on 3D Screen</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer-note">
+    <strong>MULBERRY BUSH: RADICAL 3-ACT REINTERPRETATION (1976 → 2026)</strong> • Inspired by the original 1976 live shadow-screen + film performance by <strong>Ken Kahn, Fannie Newman, Cathy Shaw &amp; Dave Taenzer</strong> (Original Music: <strong>Nancy Koch &amp; Tommy Magee</strong>)
+  </footer>
+
+  <script src="radical_sound.js"></script>
+  <script src="radical_stage.js"></script>
+  <script src="radical_app.js"></script>
+</body>
+</html>
